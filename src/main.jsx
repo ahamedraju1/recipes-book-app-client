@@ -13,6 +13,7 @@ import MyRecipe from './Component/MyRecipe.jsx';
 import SignIn from './Component/SignIn.jsx';
 import SignUp from './Component/SignUp.jsx';
 import AuthProvider from './Context/AuthProvider.jsx';
+import PrivateRoutes from './Routes/PrivateRoutes.jsx';
 
 const router = createBrowserRouter([
   {
@@ -38,13 +39,14 @@ const router = createBrowserRouter([
   },
   {
     path: '/my-recipe',
-    element: <MyRecipe></MyRecipe>,
-    loader: () => fetch('http://localhost:5000/recipes')
+    element: <PrivateRoutes><MyRecipe></MyRecipe></PrivateRoutes>
   },
   {
     path: '/recipeDetails/:id',
     loader: ({ params }) => fetch(`http://localhost:5000/recipes/${params.id}`),
-    element: <RecipeDetails></RecipeDetails>
+    element: <PrivateRoutes>
+      <RecipeDetails></RecipeDetails>
+    </PrivateRoutes>
   },
   {
     path: '/signIn',

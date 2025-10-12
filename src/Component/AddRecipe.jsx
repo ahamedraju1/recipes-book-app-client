@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { use } from 'react';
 import Navbar from './Navbar';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../Context/AuthContext';
 
 const AddRecipe = () => {
+    const {user} = use(AuthContext);
     
     const handleAddRecipe = e => {
         e.preventDefault()
@@ -12,6 +14,7 @@ const AddRecipe = () => {
         const newRecipe = Object.fromEntries(formData.entries());
         console.log(newRecipe);
       
+       newRecipe.userEmail = user.email; 
 
         // send data to the db
         fetch('http://localhost:5000/recipes', {
@@ -119,6 +122,7 @@ const AddRecipe = () => {
                         <label className="label">Photo</label>
                         <input type="text" name='photo' className="input w-full" placeholder="Photo URL" />
                     </fieldset>
+                    
                     <input className='btn w-full' type="submit" value="Add Recipe" />
 
                 </form>
