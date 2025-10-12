@@ -10,6 +10,9 @@ import AddRecipe from './Component/AddRecipe.jsx';
 import RecipeDetails from './Component/RecipeDetails.jsx';
 import AllRecipes from './Component/AllRecipes.jsx';
 import MyRecipe from './Component/MyRecipe.jsx';
+import SignIn from './Component/SignIn.jsx';
+import SignUp from './Component/SignUp.jsx';
+import AuthProvider from './Context/AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,18 +39,29 @@ const router = createBrowserRouter([
   {
     path: '/myRecipe',
     element: <MyRecipe></MyRecipe>,
-    loader : () => fetch('http://localhost:5000/recipes')
+    loader: () => fetch('http://localhost:5000/recipes')
   },
   {
     path: '/recipeDetails/:id',
     loader: ({ params }) => fetch(`http://localhost:5000/recipes/${params.id}`),
     element: <RecipeDetails></RecipeDetails>
+  },
+  {
+    path: '/signIn',
+    Component: SignIn
+  }
+  ,
+  {
+    path: '/singUp',
+    Component: SignUp
   }
 ]);
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
