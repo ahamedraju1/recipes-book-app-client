@@ -37,7 +37,7 @@ const router = createBrowserRouter([
     Component: AddRecipe
   },
   {
-    path: '/myRecipe',
+    path: '/my-recipe',
     element: <MyRecipe></MyRecipe>,
     loader: () => fetch('http://localhost:5000/recipes')
   },

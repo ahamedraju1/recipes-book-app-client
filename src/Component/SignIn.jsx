@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
 import Navbar from './Navbar';
+import { AuthContext } from '../Context/AuthContext';
 
 const SignIn = () => {
+    const { userSignIn } = use(AuthContext);
 
     const handleSignIn = e =>{
         e.preventDefault()
@@ -14,6 +16,15 @@ const SignIn = () => {
         const password = formData.get('password');
         console.log(password);
 
+        //user sign in
+        userSignIn(email, password)
+        .then(result=> {
+            console.log(result.user)
+            form.reset()
+        })
+        .catch(error=> {
+            console.log(error)
+        })
 
     }
 
@@ -31,7 +42,7 @@ const SignIn = () => {
                         <input type="password" name='password' className="input" placeholder="Password" />
                         <div><a className="link link-hover">Forgot password?</a></div>
                         <button className="btn btn-neutral mt-4">Login</button>
-                        <p>New to this Website? Please <Link to="/singUp" className='text-blue-500 underline font-bold'>Register</Link></p>
+                        <p>New to this Website? Please <Link to="/singUp" className='text-blue-500 underline font-bold'>Register</Link></p> 
                     </form>
                 </div>
             </div>
