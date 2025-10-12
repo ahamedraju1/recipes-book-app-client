@@ -8,7 +8,7 @@ const Home = () => {
 
     return (
 
-        <div>
+        <div className='mt-20'>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 {
                     recipes.map(recipe => <RecipeCard key={recipe._id} recipe={recipe}>
