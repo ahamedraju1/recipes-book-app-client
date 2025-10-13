@@ -29,7 +29,7 @@ const RecipeDetails = () => {
                             <p><span className='text-lg font-bold'>Categories:</span> {recipes.categories} </p>
                             <p><span className='text-lg font-bold'>Like :</span> {recipes.like} </p>
                             </div>
-                            <div className="card-actions justify-end">
+                            <div className="card-actions">
                                 <button className="btn btn-primary">Buy Now</button>
                             </div>
                         </div>

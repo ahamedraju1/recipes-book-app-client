@@ -7,14 +7,43 @@ const MyRecipe = () => {
     const { user } = use(AuthContext);
     const [recipes, setRecipes] = useState([]);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selected, setSelected] = useState(null);
+
+
     useEffect(() => {
-         if (!user?.email) return;
+        if (!user?.email) return;
         fetch(`http://localhost:5000/my-recipes?email=${user.email}`)
             .then(res => res.json())
             .then(data => setRecipes(data));
 
     }, [user]);
 
+
+    const handleUpdateSubmit = e => {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+        const updatedRecipe = Object.fromEntries(formData.entries());
+        console.log(updatedRecipe);
+
+        fetch(`http://localhost:5000/recipes/${selected._id}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(updatedRecipe)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setIsModalOpen(false);
+                setSelected(null);
+                setRecipes(prev => prev.map(r => r._id === selected._id ? { ...r, ...data.update } : r))
+            })
+
+
+    }
 
     return (
         <>
@@ -36,9 +65,15 @@ const MyRecipe = () => {
                                     <p>{recipe.Ingredients} </p>
                                     <p>{recipe.instruction} </p>
                                     <p>{recipe.cuisine} </p>
+                                    <p>{recipe.preparation} </p>
+                                    <p>{recipe.like} </p>
                                     <div className="flex card-actions">
-                                        <button className="btn btn-primary">update</button>
-                                        <button className='btn btn-primary'>
+                                        <button onClick={() => {
+                                            setSelected(recipe);
+                                            setIsModalOpen(true);
+                                        }} className="btn bg-gray-300">update</button>
+
+                                        <button className='btn bg-red-400'>
                                             delete
                                         </button>
                                     </div>
@@ -48,6 +83,117 @@ const MyRecipe = () => {
                     }
                 </div>
             </div>
+
+            {/* modal */}
+            {
+                isModalOpen && selected && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                        <div className="bg-white p-6 rounded-xl w-full max-w-sm shadow-2xl">
+                            <h2 className="text-xl font-bold mb-4 text-center">Update Recipe</h2>
+
+                            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                                <div className="card-body">
+                                    <form onSubmit={handleUpdateSubmit} className="fieldset">
+                                        <div>
+                                            <label className="block text-sm font-medium">Name</label>
+                                            <input
+                                                type='text'
+                                                name="name"
+                                                // value={form.name}
+                                                // onChange={handleChange}
+                                                defaultValue={selected.name}
+                                                className="input input-bordered w-full"
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="label">Ingredients</label>
+                                            <input
+                                                type='text'
+                                                name="Ingredients"
+                                                // value={form.name}
+                                                // onChange={handleChange}
+                                                defaultValue={selected.Ingredients}
+                                                className="input input-bordered w-full"
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="label">Instruction</label>
+                                            <input
+                                                type='text'
+                                                name="instruction"
+                                                // value={form.name}
+                                                // onChange={handleChange}
+                                                defaultValue={selected.instruction}
+                                                className="input input-bordered w-full"
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="label">Cuisine Type</label>
+                                            <input
+                                                type='text'
+                                                name="cuisine"
+                                                // value={form.name}
+                                                // onChange={handleChange}
+                                                defaultValue={selected.cuisine}
+                                                className="input input-bordered w-full"
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="label">Preparation Time</label>
+                                            <input
+                                                type='text'
+                                                name="preparation"
+                                                // value={form.name}
+                                                // onChange={handleChange}
+                                                defaultValue={selected.preparation}
+                                                className="input input-bordered w-full"
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="label">Category</label>
+                                            <input
+                                                type='text'
+                                                name="categories"
+                                                // value={form.name}
+                                                // onChange={handleChange}
+                                                defaultValue={selected.categories}
+                                                className="input input-bordered w-full"
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="label">Like Count</label>
+                                            <input
+                                                type='number'
+                                                name="like"
+                                                // value={form.name}
+                                                // onChange={handleChange}
+                                                defaultValue={selected.like}
+                                                className="input input-bordered w-full"
+                                                required
+                                            />
+                                        </div>
+
+
+                                        <div className="flex justify-between mt-4">
+                                            <button type="submit" className="btn btn-success">Save</button>
+                                            <button type="button" className="btn btn-error" onClick={() => setIsModalOpen(false)}>Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                )
+            }
+
+
         </>
     );
 };
