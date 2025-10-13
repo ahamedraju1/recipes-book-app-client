@@ -16,12 +16,13 @@ const AllRecipes = () => {
                     recipes.map((recipe) => (
                         <div className='mt-32' key={recipe._id}>
                             <div className="card bg-base-100 shadow-sm space-x-4">
-                                <figure>
+                                <figure> 
                                     <img
                                         src={ recipe.photo}
                                         alt="recipes"
-                                        className='w-full h-48
-                                        object-cover' />
+                                        className='w-full
+                                        object-cover h-48
+                                        overflow-hidden'/>
                                 </figure>
                                 <div className="card-body">
                                     <h2 className="card-title"> { recipe.name}</h2>

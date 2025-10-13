@@ -45,6 +45,7 @@ const MyRecipe = () => {
 
     }
 
+    
     return (
         <>
             <Navbar />
@@ -52,8 +53,8 @@ const MyRecipe = () => {
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
                     {
                         recipes.map((recipe) =>
-                            <div key={recipe._id} className="card bg-base-100 w-96 shadow-sm">
-                                <figure>
+                            <div key={recipe._id} className="card bg-base-100 shadow-sm">
+                                <figure className='h-56 overflow-hidden'>
                                     <img
                                         src={recipe.photo}
                                         alt="Recipes"
@@ -86,9 +87,10 @@ const MyRecipe = () => {
 
             {/* modal */}
             {
+
                 isModalOpen && selected && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                        <div className="bg-white p-6 rounded-xl w-full max-w-sm shadow-2xl">
+                        <div className="bg-white p-6 rounded-xl w-11/12 max-w-sm shadow-2xl max-h-[90vh] overflow-y-auto">
                             <h2 className="text-xl font-bold mb-4 text-center">Update Recipe</h2>
 
                             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
