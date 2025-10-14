@@ -32,7 +32,6 @@ const SignIn = () => {
 
     }
 
-
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
@@ -44,6 +43,7 @@ const SignIn = () => {
             })
     }
 
+    
 
     return (
 
