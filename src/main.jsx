@@ -16,6 +16,7 @@ import AuthProvider from './Context/AuthProvider.jsx';
 import PrivateRoutes from './Routes/PrivateRoutes.jsx';
 import NotFound from './Component/NotFound.jsx';
 import Slider from './Component/Slider.jsx';
+import RecipeBook from './Component/RecipeBook.jsx';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
   {
     path: '/singUp',
     Component: SignUp
+  },
+  {
+    path: '/recipeBook',
+    Component: RecipeBook
   },
 
   {

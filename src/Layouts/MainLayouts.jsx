@@ -3,6 +3,7 @@ import { Outlet } from 'react-router';
 import Navbar from '../Component/Navbar';
 import AddRecipe from '../Component/AddRecipe';
 import Slider from '../Component/Slider';
+import RecipeBook from '../Component/RecipeBook';
 
 const MainLayouts = () => {
     return (
@@ -13,7 +14,7 @@ const MainLayouts = () => {
             </div>
             <div className='max-w-7xl mx-auto'>
                 <Outlet></Outlet>
-                  
+                <RecipeBook/> 
             </div>
         </div>
     );
