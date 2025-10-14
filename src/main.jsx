@@ -14,6 +14,7 @@ import SignIn from './Component/SignIn.jsx';
 import SignUp from './Component/SignUp.jsx';
 import AuthProvider from './Context/AuthProvider.jsx';
 import PrivateRoutes from './Routes/PrivateRoutes.jsx';
+import NotFound from './Component/NotFound.jsx';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
   {
     path: '/singUp',
     Component: SignUp
+  },
+
+  {
+    path: '/*',
+    Component: NotFound
   }
 ]);
 
