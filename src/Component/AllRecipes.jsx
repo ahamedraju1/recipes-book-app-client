@@ -25,9 +25,9 @@ const AllRecipes = () => {
                                         overflow-hidden'/>
                                 </figure>
                                 <div className="card-body">
-                                    <h2 className="card-title"> { recipe.name}</h2>
-                                    <p>{ recipe.cuisine} </p>
-                                    <p>{ recipe.like} </p>
+                                    <h2 className="card-title text-xl"> { recipe.name}</h2>
+                                    <p className='font-semibold'><span className='text-lg '>Cuisine:</span> { recipe.cuisine} </p>
+                                    <p className='font-semibold'><span className='text-lg'>Like: </span> { recipe.like} </p>
                                     <div className="card-actions justify-end">
                                         <Link to={`/recipeDetails/${recipe._id}`} className="btn btn-primary">See Details</Link>
                                     </div>

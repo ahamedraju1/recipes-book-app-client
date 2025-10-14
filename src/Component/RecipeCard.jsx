@@ -15,9 +15,9 @@ const RecipeCard = ({ recipe }) => {
                         className="rounded-xl w-full" />
                 </figure>
                 <div className="card-body items-center text-center w-full">
-                    <h2 className="card-title">{name}</h2>
-                    <p>{cuisine}</p>
-                    <p>{like} </p>
+                    <h2 className="card-title text-xl font-semibold">{name}</h2>
+                    <p className='text-lg'><span className='text-lg font-semibold'>Cuisine: </span> {cuisine}</p>
+                    <p className='text-lg'><span className='text-lg font-semibold'>Like : </span>{like} </p>
                     <div className="card-actions">
                         <Link to={`/recipeDetails/${recipe._id}`} className="btn btn-primary">View Details</Link>
                     </div>

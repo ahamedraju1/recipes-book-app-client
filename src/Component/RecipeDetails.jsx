@@ -5,7 +5,7 @@ import { useAuth } from '../Context/AuthContext';
 
 const RecipeDetails = () => {
     const recipe = useLoaderData();
-    console.log(recipe);
+    // console.log(recipe);
     const { user } = useAuth();
     const [likeCount, setLikeCount] = useState(recipe.like);
 
@@ -28,7 +28,7 @@ const RecipeDetails = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log("Like updated:", data);
+                // console.log("Like updated:", data);
                 setLikeCount(data.updateLikes);
             })
     }
