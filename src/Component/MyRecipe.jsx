@@ -135,8 +135,6 @@ const MyRecipe = () => {
                                             <input
                                                 type='text'
                                                 name="name"
-                                                // value={form.name}
-                                                // onChange={handleChange}
                                                 defaultValue={selected.name}
                                                 className="input input-bordered w-full"
                                                 required
@@ -159,8 +157,6 @@ const MyRecipe = () => {
                                             <input
                                                 type='text'
                                                 name="instruction"
-                                                // value={form.name}
-                                                // onChange={handleChange}
                                                 defaultValue={selected.instruction}
                                                 className="input input-bordered w-full"
                                                 required
@@ -171,8 +167,6 @@ const MyRecipe = () => {
                                             <input
                                                 type='text'
                                                 name="cuisine"
-                                                // value={form.name}
-                                                // onChange={handleChange}
                                                 defaultValue={selected.cuisine}
                                                 className="input input-bordered w-full"
                                                 required
@@ -183,8 +177,6 @@ const MyRecipe = () => {
                                             <input
                                                 type='text'
                                                 name="preparation"
-                                                // value={form.name}
-                                                // onChange={handleChange}
                                                 defaultValue={selected.preparation}
                                                 className="input input-bordered w-full"
                                                 required
@@ -195,8 +187,6 @@ const MyRecipe = () => {
                                             <input
                                                 type='text'
                                                 name="categories"
-                                                // value={form.name}
-                                                // onChange={handleChange}
                                                 defaultValue={selected.categories}
                                                 className="input input-bordered w-full"
                                                 required
@@ -207,8 +197,6 @@ const MyRecipe = () => {
                                             <input
                                                 type='number'
                                                 name="like"
-                                                // value={form.name}
-                                                // onChange={handleChange}
                                                 defaultValue={selected.like}
                                                 className="input input-bordered w-full"
                                                 required
