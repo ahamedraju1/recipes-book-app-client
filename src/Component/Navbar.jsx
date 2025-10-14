@@ -2,12 +2,14 @@ import React, { use, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 import logo from '../assets/recipe-logo.png';
+import Swal from 'sweetalert2';
+
 
 const Navbar = () => {
     const { user, userSignOut } = use(AuthContext);
     const [menu, setMenu] = useState(false);
 
-       useEffect(() => {
+    useEffect(() => {
         if (menu) {
             document.body.style.overflow = "hidden"
         } else {
@@ -19,6 +21,13 @@ const Navbar = () => {
         userSignOut()
             .then(() => {
                 console.log("user try to sign out")
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Logout Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             })
             .catch(error => {
                 console.log(error)
