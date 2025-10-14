@@ -4,17 +4,19 @@ import Navbar from '../Component/Navbar';
 import AddRecipe from '../Component/AddRecipe';
 import Slider from '../Component/Slider';
 import RecipeBook from '../Component/RecipeBook';
+import Blogs from '../Component/Blogs';
 
 const MainLayouts = () => {
     return (
         <div>
             <div>
-                 <Navbar/>
-                 <Slider/>
+                <Navbar />
+                <Slider />
             </div>
             <div className='max-w-7xl mx-auto'>
                 <Outlet></Outlet>
-                <RecipeBook/> 
+                <RecipeBook />
+                <Blogs />
             </div>
         </div>
     );

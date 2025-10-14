@@ -17,6 +17,7 @@ import PrivateRoutes from './Routes/PrivateRoutes.jsx';
 import NotFound from './Component/NotFound.jsx';
 import Slider from './Component/Slider.jsx';
 import RecipeBook from './Component/RecipeBook.jsx';
+import Blogs from './Component/Blogs.jsx';
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
   {
     path: '/recipeBook',
     Component: RecipeBook
+  },
+  {
+    path: '/blogs',
+    Component: Blogs
   },
 
   {
