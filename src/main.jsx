@@ -15,6 +15,7 @@ import SignUp from './Component/SignUp.jsx';
 import AuthProvider from './Context/AuthProvider.jsx';
 import PrivateRoutes from './Routes/PrivateRoutes.jsx';
 import NotFound from './Component/NotFound.jsx';
+import Slider from './Component/Slider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         Component: Home,
         loader: () => fetch('http://localhost:5000/recipes/home')
       },
+      {
+        path: '/',
+        Component: Slider
+      }
 
     ]
   },
