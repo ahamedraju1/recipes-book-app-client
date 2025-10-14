@@ -18,6 +18,7 @@ import NotFound from './Component/NotFound.jsx';
 import Slider from './Component/Slider.jsx';
 import RecipeBook from './Component/RecipeBook.jsx';
 import Blogs from './Component/Blogs.jsx';
+import Footer from './Footer/Footer.jsx';
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
   {
     path: '/*',
     Component: NotFound
+  },
+  {
+    path: '/footer',
+    Component: Footer
   }
 ]);
 

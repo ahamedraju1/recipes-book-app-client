@@ -5,6 +5,7 @@ import AddRecipe from '../Component/AddRecipe';
 import Slider from '../Component/Slider';
 import RecipeBook from '../Component/RecipeBook';
 import Blogs from '../Component/Blogs';
+import Footer from '../Footer/Footer';
 
 const MainLayouts = () => {
     return (
@@ -17,7 +18,9 @@ const MainLayouts = () => {
                 <Outlet></Outlet>
                 <RecipeBook />
                 <Blogs />
+               
             </div>
+             <Footer />
         </div>
     );
 };
