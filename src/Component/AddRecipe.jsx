@@ -79,7 +79,7 @@ const AddRecipe = () => {
                         </fieldset>
                         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
                             <label className="label">Preparation Time</label>
-                            <input type="text" name='preparation' className="input w-full" placeholder="Preparation Time" />
+                            <input type="number" name='preparation' className="input w-full" placeholder="Preparation Time" />
                         </fieldset>
                         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
                             <label className="label">Categories</label>
