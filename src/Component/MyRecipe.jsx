@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import { AuthContext } from '../Context/AuthContext';
 import Swal from 'sweetalert2';
+import Footer from '../Footer/Footer';
 
 
 const MyRecipe = () => {
@@ -14,7 +15,7 @@ const MyRecipe = () => {
 
     useEffect(() => {
         if (!user?.email) return;
-        fetch(`http://localhost:5000/my-recipes?email=${user.email}`)
+        fetch(`https://recipes-book-app-server.vercel.app/my-recipes?email=${user.email}`)
             .then(res => res.json())
             .then(data => setRecipes(data));
 
@@ -29,7 +30,7 @@ const MyRecipe = () => {
         const updatedRecipe = Object.fromEntries(formData.entries());
         console.log(updatedRecipe);
 
-        fetch(`http://localhost:5000/recipes/${selected._id}`, {
+        fetch(`https://recipes-book-app-server.vercel.app/recipes/${selected._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
@@ -57,7 +58,7 @@ const MyRecipe = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/recipes/${id}`, {
+                fetch(`https://recipes-book-app-server.vercel.app/recipes/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -217,7 +218,7 @@ const MyRecipe = () => {
                 )
             }
 
-
+            <Footer />
         </>
     );
 };

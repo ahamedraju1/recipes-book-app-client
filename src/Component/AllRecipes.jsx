@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router';
 import Navbar from './Navbar';
+import Footer from '../Footer/Footer';
 
 const AllRecipes = () => {
     const recipes = useLoaderData();
@@ -43,6 +44,7 @@ const AllRecipes = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-4'>
                 {
+                    Array.isArray(filteredRecipes) ?(
                     filteredRecipes.map((recipe) => (
                         <div className='mt-32' key={recipe._id}>
                             <div className="card bg-base-100 shadow-sm space-x-4">
@@ -65,9 +67,14 @@ const AllRecipes = () => {
                             </div>
                         </div>
                     ))
+                    ) :
+                    (
+                        <p className='text-center mt-10  text-gray-400'>No recipes found</p>
+                    ) 
                 }
             </div>
          </div>
+         <Footer/>
         </>
     );
 };

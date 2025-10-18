@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import Navbar from './Navbar';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Context/AuthContext';
+import Footer from '../Footer/Footer';
 
 const AddRecipe = () => {
     const {user} = use(AuthContext);
@@ -17,7 +18,7 @@ const AddRecipe = () => {
        newRecipe.userEmail = user.email; 
 
         // send data to the db
-        fetch('http://localhost:5000/recipes', {
+        fetch('https://recipes-book-app-server.vercel.app/recipes', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -128,7 +129,7 @@ const AddRecipe = () => {
                 </form>
 
             </div>
-
+            <Footer/>
 
         </>
     );

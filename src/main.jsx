@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch('http://localhost:5000/recipes/home')
+        loader: () => fetch('https://recipes-book-app-server.vercel.app/recipes/home')
       },
       {
         path: '/',
@@ -40,7 +40,9 @@ const router = createBrowserRouter([
   {
     path: '/allRecipe',
     Component: AllRecipes,
-    loader: () => fetch('http://localhost:5000/recipes')
+    loader: () => fetch('https://recipes-book-app-server.vercel.app/recipes')
+    // loader: () => fetch('https://recipes-book-app-server-n3e7fgriu-ahamedraju1s-projects.vercel.app/recipes')
+
   },
   {
     path: "/addRecipe",
@@ -52,7 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/recipeDetails/:id',
-    loader: ({ params }) => fetch(`http://localhost:5000/recipes/${params.id}`),
+    loader: ({ params }) => fetch(`https://recipes-book-app-server.vercel.app/recipes/${params.id}`),
     element: <PrivateRoutes>
       <RecipeDetails></RecipeDetails>
     </PrivateRoutes>

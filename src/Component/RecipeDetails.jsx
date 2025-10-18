@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './Navbar';
 import { useLoaderData } from 'react-router';
 import { useAuth } from '../Context/AuthContext';
+import Footer from '../Footer/Footer';
 
 const RecipeDetails = () => {
     const recipe = useLoaderData();
@@ -19,7 +20,7 @@ const RecipeDetails = () => {
         // setLikeCount(newCount);
         // console.log("Recipe object before like:", recipe);// added after error
 
-        fetch(`http://localhost:5000/recipes/${recipe._id}`, {
+        fetch(`https://recipes-book-app-server.vercel.app/recipes/${recipe._id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"
@@ -69,6 +70,8 @@ const RecipeDetails = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </>
     );
 };
