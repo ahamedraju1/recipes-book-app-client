@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import Navbar from './Navbar';
 import { AuthContext } from '../Context/AuthContext';
@@ -6,6 +6,8 @@ import { FcGoogle } from "react-icons/fc";
 
 const SignIn = () => {
     const { userSignIn, googleSignIn } = use(AuthContext);
+    const [success, setSuccess] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -19,15 +21,26 @@ const SignIn = () => {
         const password = formData.get('password');
         console.log(password);
 
+
+        setSuccess(false);
+        setErrorMessage('');
+        const passwordRegExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+        if(passwordRegExp.test(password) === false){
+            setErrorMessage('Password must have One lowerCase, One UpperCase, One digit and 6 characters long');
+            return;
+        }
+
         //user sign in
         userSignIn(email, password)
             .then(result => {
                 console.log(result)
                 navigate(location?.state || '/');
+                setSuccess(true);
                 form.reset()
             })
             .catch(error => {
                 console.log(error)
+                setErrorMessage(error.message);
             })
 
     }
@@ -54,9 +67,17 @@ const SignIn = () => {
                     <h1 className="text-3xl text-center font-bold"> Please Login </h1>
                     <form onSubmit={handleSignIn} className="fieldset">
                         <label className="label">Email</label>
-                        <input type="email" name='email' className="input" placeholder="Email" />
+                        <input type="email" name='email' className="input" placeholder="Email" required
+                        />
                         <label className="label">Password</label>
-                        <input type="password" name='password' className="input" placeholder="Password" />
+                        <input 
+                        type="password" 
+                        name='password' 
+                        className="input" 
+                        placeholder="Password"
+                        minLength={6}                     
+                        required
+                        />                      
                         <div><a className="link link-hover">Forgot password?</a></div>
                         <button className="btn btn-neutral mt-4">Login</button>
                         <p>New to this Website? Please <Link to="/singUp" className='text-blue-500 underline font-bold'>Register</Link></p>
@@ -64,7 +85,12 @@ const SignIn = () => {
                         <button onClick={handleGoogleSignIn} className='btn bg-white text-black border-[#e5e5e5]'>
                             <FcGoogle />Login with Google
                         </button>
-
+                            {
+                                errorMessage && <p className='text-red-500 mt-1'>{errorMessage} </p>
+                            }
+                            {
+                                success && <p className='text-green-500 mt-1'>  user has created Successfully</p>
+                            }
                     </form>
                 </div>
             </div>

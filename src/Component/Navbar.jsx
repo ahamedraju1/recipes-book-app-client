@@ -71,11 +71,20 @@ const Navbar = () => {
 
                     <div className="navbar-end mx-7">
                         {
-                            user ? <div className='flex flex-col'>
+                            user ? <div className='flex flex-col
+                             items-center gap-1'>
+                                <div className='flex items-center gap-3'>
+                                <div className="avatar cursor-pointer">
+                                    <div className="w-12 rounded-full">
+                                        <img className='mt-2 items-center' src={user.photoURL}
+                                        alt='user' />
+                                    </div>
+                                </div>
                                 <button onClick={handleSignOut} className='btn btn-primary'>
                                     Log out
                                 </button>
-                                <span>{user.email} </span>
+                                </div>
+                                <span>{user.displayName || user.email} </span>
                             </div> : <Link to='/signIn' className='btn btn-primary'>Login</Link>
                         }
                     </div>
